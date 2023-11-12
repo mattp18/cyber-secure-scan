@@ -6,19 +6,28 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
 
 @Service
 public class PdfServiceImpl implements PdfService {
     Logger log = LoggerFactory.getLogger(PdfServiceImpl.class);
 
+    @Value("${jasper.file}")
+    private String jrxmlFileName;
+
+    @Value("${jasper.compiled.file}")
+    private String  compiledReportFile;
+
+    @Value("${jasper.output.file}")
+    private String reportFileName;
+
     @Override
     public void generatePdf(ScannedFile fileToBeScanned, Map<String, Collection<String>> viruses) {
-        String jrxmlFileName = "C:\\Users\\mpuen\\Documents\\FirstJasper.jrxml";
-        String compiledReportFile = "C:\\Users\\mpuen\\Documents\\FirstJasper.jasper";
-        String outputFileName = "C:\\Users\\mpuen\\Documents\\output_report.pdf";
+
 
         compileReport(jrxmlFileName, compiledReportFile);
 
@@ -31,8 +40,8 @@ public class PdfServiceImpl implements PdfService {
 
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(compiledReportFile, null, beanColDataSource);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, outputFileName);
-            JasperExportManager.exportReportToPdfFile(jasperPrint, outputFileName);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, reportFileName);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, reportFileName);
             log.info("PDF created!");
         } catch (JRException e) {
             e.printStackTrace();
