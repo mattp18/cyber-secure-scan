@@ -1,6 +1,7 @@
 package com.code4joe.cybersecurescan.web.controller;
 
 import com.code4joe.cybersecurescan.backend.service.MalwareScanService;
+import com.code4joe.cybersecurescan.web.model.ScannedFile;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,11 @@ public class ScanController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> scanFileForMalware(@RequestParam("file") MultipartFile file) throws IOException {
-        return ResponseEntity.ok(malwareScanService.scanFile(file.getInputStream()));
+        ScannedFile fileToBeScanned = new ScannedFile();
+        fileToBeScanned.setFileName(file.getOriginalFilename());
+        fileToBeScanned.setContentType(file.getContentType());
+        fileToBeScanned.setSize(file.getSize());
+
+        return ResponseEntity.ok(malwareScanService.scanFile(file.getInputStream(), fileToBeScanned));
     }
 }
