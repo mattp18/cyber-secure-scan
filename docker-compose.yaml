@@ -10,4 +10,10 @@ services:
       MINIO_ROOT_PASSWORD: "password"
     command: minio server /data/minio --console-address ":9001"
 
+  clamav:
+    image: "clamav/clamav:latest"
+    ports:
+      - "3310:3310"
+    command: ["clamd"]
+
 

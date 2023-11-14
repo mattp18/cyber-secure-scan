@@ -60,7 +60,7 @@ public class PdfServiceImpl implements PdfService {
                 InputStream targetStream = ByteSource.wrap(pdfBytes).openStream();
                 minioClient.putObject(PutObjectArgs.builder().bucket("upload-reports")
                         .object(fileToBeScanned.getFileName() + PdfReportConstants.REPORT_POSTFIX)
-                        .stream(targetStream, -1, 10485760).build());
+                        .stream(targetStream, PdfReportConstants.OBJECT_SIZE, PdfReportConstants.PART_SIZE).build());
             } catch (ServerException | InsufficientDataException | InternalException | ErrorResponseException |
                      IOException | NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException |
                      XmlParserException e) {
