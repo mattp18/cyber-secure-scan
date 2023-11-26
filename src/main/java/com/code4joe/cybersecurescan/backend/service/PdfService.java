@@ -6,5 +6,5 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface PdfService {
-    void generatePdf(ScannedFile fileToBeScanned, Map<String, Collection<String>> viruses);
+    void generatePdf(ScannedFile fileToBeScanned);
 }

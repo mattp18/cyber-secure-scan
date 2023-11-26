@@ -11,7 +11,7 @@ public class MinioConfig {
     public MinioClient minioClient() {
                return MinioClient.builder()
                         .endpoint("http://localhost:9000/")
-                        .credentials("iTBiUPrlrsesUedSBKJ0", "n0q00ExWRNVvBcbVYhAlEnXbAaf7syhaz2KxNME9")
+                        .credentials("koo3ItqKVjL0QlHw8zkD", "PiiE7uK2eUw6neZcHOA8XvcQqrWbksMa3Bxdtj09")
                         .build();
     }
 }

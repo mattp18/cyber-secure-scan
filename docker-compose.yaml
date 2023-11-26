@@ -14,6 +14,6 @@ services:
     image: "clamav/clamav:latest"
     ports:
       - "3310:3310"
-    command: ["clamd"]
+    #command: ["clamd"]
 
 

@@ -42,16 +42,16 @@ public class PdfServiceImpl implements PdfService {
     private String reportFileName;
 
     @Override
-    public void generatePdf(ScannedFile fileToBeScanned, Map<String, Collection<String>> viruses) {
+    public void generatePdf(ScannedFile fileToBeScanned) {
 
         compileReport(jrxmlFileName, compiledReportFile);
 
-        List<ScannedFile> someList = new ArrayList<ScannedFile>();
+        List<ScannedFile> scannedFileList = new ArrayList<>();
 
-        someList.add(fileToBeScanned);
+        scannedFileList.add(fileToBeScanned);
 
         JRBeanCollectionDataSource beanColDataSource =
-                new JRBeanCollectionDataSource(someList);
+                new JRBeanCollectionDataSource(scannedFileList);
 
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(compiledReportFile, null, beanColDataSource);
@@ -72,8 +72,9 @@ public class PdfServiceImpl implements PdfService {
         }
     }
 
-    private static void compileReport(String jrxmlFileName, String compiledReportFile) {
+    private void compileReport(String jrxmlFileName, String compiledReportFile) {
         try {
+            log.info("compiling Jasper jrxml file ...");
             JasperCompileManager.compileReportToFile(jrxmlFileName, compiledReportFile);
         } catch (JRException e) {
             e.printStackTrace();
