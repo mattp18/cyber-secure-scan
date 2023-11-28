@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { uploadFile } from "../../../utils/api";
 
 const ScanFile = () => {
   const [file, setFile] = useState<File | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("testing handle file change");
@@ -25,6 +26,10 @@ const ScanFile = () => {
       uploadFile(file);
       const response = setFile(file);
       console.log(response);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      setFile(null);
       setShowSuccessAlert(true);
       setTimeout(hideAlert, 5000);
     }
@@ -36,6 +41,7 @@ const ScanFile = () => {
         type="file"
         className="file-input file-input-bordered file-input-sm w-full max-w-xs"
         onChange={handleFileChange}
+        ref={fileInputRef}
       />
       <button
         disabled={!file}
@@ -46,7 +52,7 @@ const ScanFile = () => {
       </button>
 
       {showSuccessAlert && (
-        <div role="alert" className="alert alert-success mt-6">
+        <div role="alert" className="alert alert-success mt-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-current shrink-0 h-6 w-6"
