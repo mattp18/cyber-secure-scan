@@ -1,4 +1,4 @@
-// File: C:\Users\mpuen\Documents\react-stuff\cyber-secure-scan-frontend\src\app\page.tsx
+// File: C:\Users\mpuen\Documents\springboot-projects\cyber-secure-scan\cyber-secure-scan-frontend\src\app\page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
