@@ -1,10 +1,11 @@
 import ScanFile from "./components/ScanFile";
 import Navbar from "./components/Navbar";
 import { FaGithubSquare } from "react-icons/fa";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl mx-auto mt-4">
+    <main className="max-w-8xl mx-auto mt-4">
       <Navbar />
       <div className="text-center items-center my-5 flex flex-col gap-4">
         <h1 className="text-4xl font-bold mb-5">Cyber Secure Scan</h1>
@@ -29,6 +30,7 @@ export default function Home() {
           understanding and cooperation.
         </h1>
         <ScanFile />
+        <Footer />
       </div>
     </main>
   );

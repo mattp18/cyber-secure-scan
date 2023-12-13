@@ -6,7 +6,10 @@ import { uploadFile } from "../../../utils/api";
 const ScanFile = () => {
   const [file, setFile] = useState<File | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
+  const [showFailureAlert, setShowFailureAlert] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [scanResponseText, setScanResponseText] = useState<string | null>("");
+  const isChecked = false;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("testing handle file change");
@@ -20,10 +23,14 @@ const ScanFile = () => {
     setShowSuccessAlert(false);
   };
 
-  const onClickScanButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickScanButton = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     console.log("testing again");
     if (file) {
-      uploadFile(file);
+      var returnedResponse = await uploadFile(file);
+      setScanResponseText(returnedResponse);
+      console.log("testing response from request " + returnedResponse);
       const response = setFile(file);
       console.log(response);
       if (fileInputRef.current) {
@@ -36,13 +43,17 @@ const ScanFile = () => {
   };
 
   return (
-    <div>
+    <div className="items-center flex flex-col">
       <input
         type="file"
         className="file-input file-input-bordered file-input-sm w-full max-w-xs"
         onChange={handleFileChange}
         ref={fileInputRef}
       />
+      <div className="justify-normal">
+        <h3>Email</h3>
+        <input type="checkbox" className="toggle mt-8" checked={isChecked} />
+      </div>
       <button
         disabled={!file}
         onClick={onClickScanButton}
@@ -66,7 +77,7 @@ const ScanFile = () => {
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span>File has been scanned!</span>
+          <span>{scanResponseText}</span>
         </div>
       )}
     </div>

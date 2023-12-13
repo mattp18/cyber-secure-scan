@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 const API_BASE_URL = "http://localhost:8080/";
 
@@ -15,16 +15,20 @@ export const fetchData = async (endpoint: string) => {
   }
 };
 
-export const uploadFile = async (file: File) => {
+export const uploadFile = async (file: File): Promise<any> => {
   const formData = new FormData();
   formData.append("file", file);
 
   try {
-    const response = await axiosInstance.post("api/v1/scan/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response: AxiosResponse = await axiosInstance.post(
+      "api/v1/scan/upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     return response.data;
   } catch (error) {
