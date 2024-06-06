@@ -84,10 +84,6 @@ docker system prune -a --volumes
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
 for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Credit
-
-- **Template Used** - [Sakai](https://github.com/primefaces/sakai-react)
-
 ## Authors
 
 - **Matthew Puentes** - _Initial work_
