@@ -54,9 +54,13 @@ docker system prune -a --volumes
 ```bash
 docker-compose up 
 ```
-2. To ensure the applicatio builds without any errors
+2. To ensure the backend application builds without any errors
 ```bash
 ./gradlew build 
+```
+3. Run the application
+```bash
+./gradlew bootrun
 ```
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
 for details on our code of conduct, and the process for submitting pull requests to us.
