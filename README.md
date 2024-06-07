@@ -2,18 +2,6 @@
 
 An application that scans files for malware and generates report if malware was found.
 
-## Developer Setup
-
-When initially setting up the project, install packages from the root of the repository to enable git hooks.
-
-```bash
-yarn deps # Install dependencies and configures hooks
-
-yarn start # Starts up the application using docker. Docker must be running for this
-```
-
-While using the pre-commit hooks is highly encouraged, if you ever need to force a commit to go through without passing the pre-commit hooks, you can commit with the `--no-verify` flag.
-
 ### Additional commands to run in the root repository
 
 ## Getting Started
@@ -22,11 +10,6 @@ While using the pre-commit hooks is highly encouraged, if you ever need to force
 
 - `yarn run-docker` # Starts the docker services defined in docker-compose.yml
 
-### If no docker
-
-- Create
-
-- Configure MinIO locally.
 
 ## Notes
 
@@ -38,13 +21,10 @@ While using the pre-commit hooks is highly encouraged, if you ever need to force
 
 - Start Spring Boot application using on linux/unix - **./gradlew bootRun**
 - Run unit tests using - **./gradlew test**
-- Run integration tests using - **./gradlew integrationTest**
 - Run all tests using - **./gradlew testAll**
 
-- Run owasp dependency check - **./gradlew dependencyCheckAnalyze --info**
 - Access API application on _<http://localhost:8080/>_
 - Access Frontend application on _<http://localhost:3000/>_
-- Access Swagger UI - **<http://localhost:8080/swagger-ui/index.html>**
 
     - Credentials for Minio on docker are
 
@@ -53,15 +33,6 @@ username: admin
 password: password
 ```
 
-```bash
-Admin user with "ADMIN" role
-username: admin
-password: password
-
-Second user with "USER" role
-username: user
-password: password
-```
 
 ## Running on Docker (Assuming docker is installed)
 
@@ -78,9 +49,15 @@ password: password
 ```bash
 docker system prune -a --volumes
 ```
-
-## Contributing
-
+## Steps
+1. Run docker in the root of the project using the following command
+```bash
+docker-compose up 
+```
+2. To ensure the applicatio builds without any errors
+```bash
+./gradlew build 
+```
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
 for details on our code of conduct, and the process for submitting pull requests to us.
 
