@@ -1,21 +1,6 @@
 # Cyber Secure Scan
-
-An application that scans files for malware and generates report if malware was found.
-
-### Additional commands to run in the root repository
-
-## Getting Started
-
-### if you have docker installed, then run this command
-
-- `yarn run-docker` # Starts the docker services defined in docker-compose.yml
-
-
+ To conduct a static file scan using the Spring Boot, ClamAV, MinIO, and Next.js to detect malware and generate a report to review findings.
 ## Notes
-
-- The Default profiles for the application are **development**, **test** and **production** to test out production
-  functionalities.
-    - Datasource must be provided for production profile for the application to run.
 
 \*NB: Windows users must use **gradlew** instead of **./gradlew\*** in **API**
 
@@ -32,11 +17,6 @@ An application that scans files for malware and generates report if malware was 
 username: root
 password: password
 ```
-
-
-## Running on Docker (Assuming docker is installed)
-
-- in the root directory (et-transit) where the docker-compose.yml is, simply run the command - **docker-compose up**
 
 ## Stop running application on Docker
 
