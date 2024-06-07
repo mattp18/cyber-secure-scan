@@ -29,7 +29,7 @@ An application that scans files for malware and generates report if malware was 
     - Credentials for Minio on docker are
 
 ```bash
-username: admin
+username: root
 password: password
 ```
 
@@ -62,6 +62,19 @@ docker-compose up
 ```bash
 ./gradlew bootrun
 ```
+4. Navigate to cyber-secure-scan-frontend
+```bash
+cd cyber-secure-scan-frontend 
+```
+5. To start the frontend server
+```bash
+npm run dev 
+```
+6. Navigate to http://localhost:3000 on the browser
+![Screenshot](https://i.imgur.com/KhcnY1C.png)
+
+
+
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
 for details on our code of conduct, and the process for submitting pull requests to us.
 
