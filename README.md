@@ -60,7 +60,7 @@ docker-compose up
 ```
 3. Run the application
 ```bash
-./gradlew bootrun
+./gradlew bootRun
 ```
 4. Navigate to cyber-secure-scan-frontend
 ```bash
@@ -72,6 +72,8 @@ npm run dev
 ```
 6. Navigate to http://localhost:3000 on the browser
 ![Screenshot](https://i.imgur.com/KhcnY1C.png)
+7. To view report, navigate to http://localhost:9000 on the browser
+8. Report can be downloaded from MinIO upload reports bucket
 
 
 
