@@ -5,4 +5,5 @@ public final class PdfReportConstants {
     public static final String REPORT_POSTFIX = "_report.pdf";
     public static final long OBJECT_SIZE = -1;
     public static final long PART_SIZE = 10485760;
+    public static final String BUCKET_NAME = "upload-reports";
 }
