@@ -30,11 +30,11 @@ password: password
 docker system prune -a --volumes
 ```
 ## Steps
-1. Run docker in the root of the project using the following command
+1. Run docker command in the root of the project
 ```bash
 docker-compose up 
 ```
-2. From Docker, create access key and copy access key + secret key. Store the keys in environment variables named MINIO_A_KEY and MINIO_S_KEY
+2. Access MinIO console from http://localhost:9000, create access key and copy access key + secret key. Store the keys in environment variables named MINIO_A_KEY and MINIO_S_KEY
 ```bash
 Variable: MINIO_A_KEY
 Value: YOUR ACCESS KEY VALUE
