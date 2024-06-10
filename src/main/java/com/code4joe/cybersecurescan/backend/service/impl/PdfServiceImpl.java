@@ -10,11 +10,13 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import lombok.RequiredArgsConstructor;
-import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -34,10 +36,8 @@ public class PdfServiceImpl implements PdfService {
     Logger log = LoggerFactory.getLogger(PdfServiceImpl.class);
 
     private final MinioClient minioClient;
-    private final ResourceLoader resourceLoader;
 
-    @Value("${jasper.compiled.file}")
-    private String  compiledReportFile;
+    private final ResourceLoader resourceLoader;
 
     @Override
     public void generatePdf(ScannedFile fileToBeScanned) {
@@ -50,8 +50,10 @@ public class PdfServiceImpl implements PdfService {
                 new JRBeanCollectionDataSource(scannedFileList);
 
         try {
-            Resource resource = resourceLoader.getResource("classpath:FirstJasper.jasper");
-            JasperPrint jasperPrint = JasperFillManager.fillReport(resource.getFile().getPath(), null, beanColDataSource);
+            ClassPathResource classPathResource = new ClassPathResource("FirstJasper.jasper");
+            InputStream inputStream = classPathResource.getInputStream();
+            //Resource resource = resourceLoader.getResource("classpath:FirstJasper.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, null, beanColDataSource);
             byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
             try {
                 InputStream targetStream = ByteSource.wrap(pdfBytes).openStream();

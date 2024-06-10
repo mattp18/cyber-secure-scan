@@ -10,6 +10,6 @@ public class ClamAVConfig {
 
     @Bean
     public ClamavClient clamavClient() {
-        return new ClamavClient(MalwareScanConstants.CLAM_AV_HOST);
+        return new ClamavClient("172.24.0.2", 3310);
     }
 }

@@ -11,12 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DeleteReportsScheduler {
-
-    private final MinioClient minioClient;
-
     Logger log = LoggerFactory.getLogger(DeleteReportsScheduler.class);
 
-    @Scheduled(cron = "0 */2 * * * *")
+    @Scheduled(cron = "0 */10 * * * *")
     private void deleteReportsTask() {
         log.info("deleting reports from bucket ...");
 

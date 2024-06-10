@@ -16,4 +16,16 @@ services:
       - "3310:3310"
     #command: ["clamd"]
 
+  # App backend
+  api:
+    image: cyberapi
+    ports:
+      - "8080:8080"
+    environment:
+      - MINIO_A_KEY=access
+      - MINIO_S_KEY=secret
+    depends_on:
+      - clamav
+      - minio
+
 
