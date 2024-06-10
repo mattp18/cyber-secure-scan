@@ -3,7 +3,7 @@
 ## Notes
 
 \*NB: Windows users must use **gradlew** instead of **./gradlew\*** in **API**
-
+- Application requires environment variables to be set for MinIO access keys
 - Start Spring Boot application using on linux/unix - **./gradlew bootRun**
 - Run unit tests using - **./gradlew test**
 - Run all tests using - **./gradlew testAll**
@@ -30,30 +30,38 @@ password: password
 docker system prune -a --volumes
 ```
 ## Steps
-1. Run docker in the root of the project using the following command
+1. Run docker command in the root of the project
 ```bash
 docker-compose up 
 ```
-2. To ensure the backend application builds without any errors
+2. Access MinIO console from http://localhost:9000, create access key and copy access key + secret key. Store the keys in environment variables named MINIO_A_KEY and MINIO_S_KEY
+```bash
+Variable: MINIO_A_KEY
+Value: YOUR ACCESS KEY VALUE
+
+Variable: MINIO_S_KEY
+Value: YOUR SECRET KEY VALUE
+```
+3. To ensure the backend application builds without any errors
 ```bash
 ./gradlew build 
 ```
-3. Run the application
+4. Run the application
 ```bash
 ./gradlew bootRun
 ```
-4. Navigate to cyber-secure-scan-frontend
+5. Navigate to cyber-secure-scan-frontend
 ```bash
 cd cyber-secure-scan-frontend 
 ```
-5. To start the frontend server
+6. To start the frontend server
 ```bash
 npm run dev 
 ```
-6. Navigate to http://localhost:3000 on the browser
+7. Navigate to http://localhost:3000 on the browser
 ![Screenshot](https://i.imgur.com/KhcnY1C.png)
-7. To view report, navigate to http://localhost:9000 on the browser
-8. Report can be downloaded from MinIO upload reports bucket
+8. To view report, navigate to http://localhost:9000 on the browser
+9. Report can be downloaded from MinIO upload reports bucket
 
 
 
