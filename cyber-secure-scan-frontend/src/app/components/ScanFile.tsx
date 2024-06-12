@@ -46,14 +46,11 @@ const ScanFile = () => {
     <div className="items-center flex flex-col">
       <input
         type="file"
-        className="file-input file-input-bordered file-input-sm w-full max-w-xs"
+        className="file-input file-input-bordered file-input-sm w-full max-w-xs mb-5"
         onChange={handleFileChange}
         ref={fileInputRef}
       />
-      <div className="justify-normal">
-        <h3>Email</h3>
-        <input type="checkbox" className="toggle mt-8" checked={isChecked} />
-      </div>
+
       <button
         disabled={!file}
         onClick={onClickScanButton}
