@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="max-w-8xl mx-auto mt-4">
+    <main className="max-w-8xl mx-auto mt-4 bg-white">
       <Navbar />
       <div className="text-center items-center my-5 flex flex-col gap-4">
         <h1 className="text-5xl font-bold mb-5">Cyber Secure Scan</h1>
