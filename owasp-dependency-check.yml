@@ -1,0 +1,24 @@
+name: OWASP Dependency Vulnerability Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run OWASP Dependency-Check
+        uses: philips-labs/owasp-dependency-check-action@v6
+        with:
+          format: "HTML"
+          project: "spring-boot-app"
+          scan: "./"
