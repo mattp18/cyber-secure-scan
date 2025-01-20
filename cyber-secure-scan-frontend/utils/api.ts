@@ -18,7 +18,6 @@ export const fetchData = async (endpoint: string) => {
 export const uploadFile = async (file: File): Promise<any> => {
   const formData = new FormData();
   formData.append("file", file);
-
   try {
     const response: AxiosResponse = await axiosInstance.post(
       "api/v1/scan/upload",
@@ -29,7 +28,6 @@ export const uploadFile = async (file: File): Promise<any> => {
         },
       }
     );
-
     return response.data;
   } catch (error) {
     console.log("Error uploading file: " + error);

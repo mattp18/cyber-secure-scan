@@ -2,6 +2,11 @@
 
 import { useRef, useState } from "react";
 import { uploadFile } from "../../../utils/api";
+import { AxiosResponse } from "axios";
+
+interface ScanFile {
+  scanFileResponse: any;
+}
 
 const ScanFile = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -19,26 +24,37 @@ const ScanFile = () => {
     }
   };
 
-  const hideAlert = () => {
+  const hideSuccessAlert = () => {
     setShowSuccessAlert(false);
   };
 
-  const onClickScanButton = async (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const hideFailureAlert = () => {
+    setShowFailureAlert(false);
+  };
+
+  const onClickScanButton = async () => {
     console.log("testing again");
     if (file) {
       var returnedResponse = await uploadFile(file);
-      setScanResponseText(returnedResponse);
-      console.log("testing response from request " + returnedResponse);
-      const response = setFile(file);
-      console.log(response);
+      console.log(returnedResponse);
+      if (returnedResponse) {
+        setScanResponseText(returnedResponse);
+        console.log("testing response from request " + returnedResponse);
+        const response = setFile(file);
+        console.log(response);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        setFile(null);
+        setShowSuccessAlert(true);
+        setTimeout(hideSuccessAlert, 5000);
+      } else {
+        setShowFailureAlert(true);
+        setTimeout(hideFailureAlert, 5000);
+      }
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      setFile(null);
-      setShowSuccessAlert(true);
-      setTimeout(hideAlert, 5000);
     }
   };
 
@@ -77,6 +93,26 @@ const ScanFile = () => {
           <span>{scanResponseText}</span>
         </div>
       )}
+      <div className="fixed top-4 right-4">
+        {showFailureAlert && (
+          <div role="alert" className="alert alert-error mt-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>An issue has occured.</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
